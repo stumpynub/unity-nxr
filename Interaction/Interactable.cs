@@ -10,7 +10,9 @@ public class Interactable : MonoBehaviour
     public string DropAction = "GripPressed"; 
     public NXRInteractor PrimaryInteractor { get; set; }
     public NXRInteractor SecondaryInteractor { get; set; }
-    
+
+    public Transform PrimaryGrabPoint; 
+    public Transform SecondaryGrabPoint; 
     
     public event OnGrabbed onGrabbed; 
     public event OnDropped onDropped; 
@@ -18,6 +20,12 @@ public class Interactable : MonoBehaviour
 
     public delegate void OnGrabbed(NXRInteractor interactor); 
     public delegate void OnDropped(NXRInteractor interactor); 
+
+
+    public void Ready() { 
+        PrimaryGrabPoint = transform; 
+        SecondaryGrabPoint = transform; 
+    }
 
 
     public void Grab(NXRInteractor interactor) { 

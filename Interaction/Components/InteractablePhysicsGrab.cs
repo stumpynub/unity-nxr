@@ -24,7 +24,7 @@ public class InteractablePhysicsGrab : MonoBehaviour
             Quaternion newRot = current * inverse; 
 
             Vector3 dir = _interatable.PrimaryInteractor.transform.position - transform.position; 
-            _rb.velocity = dir / Time.deltaTime;  
+            _rb.linearVelocity = dir / Time.deltaTime;  
             _rb.angularVelocity = newRot.eulerAngles / Time.deltaTime; 
         }
     }

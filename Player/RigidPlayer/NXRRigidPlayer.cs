@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using DigitalRuby.Tween;
-using Unity.XR.CoreUtils;
+
 using UnityEngine;
 
 
@@ -36,6 +33,6 @@ public class NXRRigidPlayer : MonoBehaviour
         Vector3 forward = _origin.CameraObject.transform.forward * joy.y; 
         Vector3 right = _origin.CameraObject.transform.right * joy.x; 
         Vector3 move = Vector3.ProjectOnPlane((forward + right).normalized, Vector3.up); 
-        _body.velocity += move; 
+        _body.linearVelocity += move; 
     }
 }
