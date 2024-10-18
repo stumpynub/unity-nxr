@@ -49,7 +49,7 @@ public partial class @NXRActionMap: IInputActionCollection2, IDisposable
                     ""name"": ""TriggerPressed"",
                     ""type"": ""Button"",
                     ""id"": ""6cf897df-cebb-4477-b99b-44c98c64ba3f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -94,7 +94,7 @@ public partial class @NXRActionMap: IInputActionCollection2, IDisposable
                     ""name"": ""GripPressed"",
                     ""type"": ""Button"",
                     ""id"": ""e8d3b37b-d474-4e84-addb-51bc12088fbf"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -237,7 +237,7 @@ public partial class @NXRActionMap: IInputActionCollection2, IDisposable
                     ""name"": ""TriggerPressed"",
                     ""type"": ""Button"",
                     ""id"": ""59d5eec6-2bd8-44d1-a5be-1668ca9c9d82"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -255,7 +255,7 @@ public partial class @NXRActionMap: IInputActionCollection2, IDisposable
                     ""name"": ""GripPressed"",
                     ""type"": ""Button"",
                     ""id"": ""fc28e662-0719-4647-b564-1befc96f2507"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

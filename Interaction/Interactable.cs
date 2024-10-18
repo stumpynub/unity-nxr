@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -11,9 +8,13 @@ public class Interactable : MonoBehaviour
     public NXRInteractor PrimaryInteractor { get; set; }
     public NXRInteractor SecondaryInteractor { get; set; }
 
-    public Transform PrimaryGrabPoint; 
-    public Transform SecondaryGrabPoint; 
+    public GameObject PrimaryGrabPoint; 
+    public GameObject SecondaryGrabPoint; 
     
+
+    public Vector3 RotationOffset;
+
+
     public event OnGrabbed onGrabbed; 
     public event OnDropped onDropped; 
 
@@ -22,9 +23,9 @@ public class Interactable : MonoBehaviour
     public delegate void OnDropped(NXRInteractor interactor); 
 
 
-    public void Ready() { 
-        PrimaryGrabPoint = transform; 
-        SecondaryGrabPoint = transform; 
+    void Start() { 
+        PrimaryGrabPoint = PrimaryGrabPoint != null ? PrimaryGrabPoint : gameObject; 
+        SecondaryGrabPoint = SecondaryGrabPoint != null ? SecondaryGrabPoint : gameObject; 
     }
 
 
@@ -56,4 +57,6 @@ public class Interactable : MonoBehaviour
     public bool IsGrabbed() { 
          return PrimaryInteractor != null || SecondaryInteractor != null; 
     }
+
+    
 }

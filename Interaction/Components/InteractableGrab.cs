@@ -1,8 +1,5 @@
 using UnityEngine;
-using UnityEditor.Animations;
-using System.Data.Common;
-using Unity.VisualScripting;
-
+using Tweens; 
 public class InteractableGrab : MonoBehaviour
 {
 
@@ -13,7 +10,6 @@ public class InteractableGrab : MonoBehaviour
     public bool UpdateRotation = true; 
 
 
-    public Vector3 RotationOffset;
 
 
     private Vector3 _prevPos; 
@@ -45,9 +41,6 @@ public class InteractableGrab : MonoBehaviour
             newRot = _interactable.PrimaryInteractor.transform.rotation; 
             newPos = _interactable.PrimaryInteractor.transform.position; 
 
-            _interactable.PrimaryInteractor.Controller.HandActionMap.FindAction("TriggerPressed").performed += ctx => { 
-                RotationOffset -= Vector3.left * -20f; 
-            }; 
         }
 
 
@@ -63,7 +56,7 @@ public class InteractableGrab : MonoBehaviour
         // update transform if grabbed 
         if (_interactable.IsGrabbed() && !Reparent && !Persice) {    
             
-            _interactable.transform.SetPositionAndRotation(newPos, newRot * Quaternion.Euler(RotationOffset));
+            _interactable.transform.SetPositionAndRotation(newPos, newRot * Quaternion.Euler(_interactable.RotationOffset));
         }
 
         if (_interactable.IsGrabbed() && !Reparent && Persice) { 

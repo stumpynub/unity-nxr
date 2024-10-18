@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
-using ExitGames.Client.Photon.StructWrapping;
-using System.Threading;
+using Tweens;
+using Tweens.Core;
 
 public class NXRInteractor : MonoBehaviour
 {
@@ -16,10 +14,7 @@ public class NXRInteractor : MonoBehaviour
     public Interactable GrabbedInteractable;
     public NXRController Controller { get; private set; }
 
-    private float _sortThrottleTime = 5;
-    private float _sortThrottle = 0;
     private Dictionary<String, List<Interactable>> _hoveredInteractables = new();
-
 
     public event Grabbed OnGrabbed;
     public event Dropped OnDropped;
@@ -64,19 +59,30 @@ public class NXRInteractor : MonoBehaviour
 
     Dictionary<string, List<Interactable>> GetSortedInteractables()
     {
-        Dictionary<String, List<Interactable>> sorted = new(); 
-        if (_hoveredInteractables.Count <= 0) return  sorted;
+        Dictionary<String, List<Interactable>> sorted = new();
+        if (_hoveredInteractables.Count <= 0) return sorted;
 
 
         foreach (String key in _hoveredInteractables.Keys)
         {
             Vector3 pos = transform.position;
-            List<Interactable> interactableList = _hoveredInteractables[key].OrderBy(x => Vector3.Distance(x.gameObject.transform.position, pos)).ToList();
-            sorted[key] = interactableList; 
+            List<Interactable> interactableList = _hoveredInteractables[key].OrderBy(x =>
+            {
+                if (x.PrimaryInteractor == null)
+                {
+                    return Vector3.Distance(x.PrimaryGrabPoint.transform.position, pos);
+                }
+                else
+                {
+                    return Vector3.Distance(x.SecondaryGrabPoint.transform.position, pos);
+                }
+            }
+            ).ToList();
+            sorted[key] = interactableList;
         }
-        
-        _hoveredInteractables = sorted; 
-        
+
+        _hoveredInteractables = sorted;
+
         return _hoveredInteractables;
     }
 
